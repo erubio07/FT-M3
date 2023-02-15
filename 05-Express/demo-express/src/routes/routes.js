@@ -1,4 +1,5 @@
-const {Router} = require('express')
+const {Router} = require('express');
+const apiRouter = require('./apiRoutes');
 
 const mainRouter = Router();
 
@@ -7,20 +8,8 @@ mainRouter.get("/", (req, res) => {
 	res.status(200).json({mensaje: 'Hola mundo'})
 });
 
-mainRouter.get("/api", (req, res) => {
-	res.status(200).send('estamos en api'); //express setea solo el content type
-});
+mainRouter.use('/api', apiRouter);
 
-mainRouter.get("/characters", (req, res) => {
-	res.status(200).send('estamos en api'); //express setea solo el content type
-});
 
-mainRouter.get("/location", (req, res) => {
-	res.status(200).send('estamos en api'); //express setea solo el content type
-});
-
-mainRouter.get("/episodes", (req, res) => {
-	res.status(200).send('estamos en api'); //express setea solo el content type
-});
 
 module.exports = mainRouter;

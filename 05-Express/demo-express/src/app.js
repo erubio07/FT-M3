@@ -11,6 +11,8 @@ server.use((req, res, next) => {
 
 server.use(morgan('dev'))
 
+server.use(express.json()); //convierte cualquier body de la res en un elemento js
+
 server.use(mainRouter)
 
 
