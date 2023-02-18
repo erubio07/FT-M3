@@ -1,0 +1,61 @@
+Notas Homework Express
+
+Ejercicio N° 1:
+
+La peticion es de tipo post. Recibo por parametro el path y un cb con req y res.
+Destructuro author, title y contents del body. El body es un objeto.
+Hago un condicional para verificar si no existe alguno de los tres.
+En ese caso devuelvo la respuesta con el error en formato JSON. Tener en cuenta que Daiana pone un return antes de la respuetsa.
+Otra forma de hacerlo es verificar que las tres propiedades existan.
+En caso de que las tres propiedades existan; crear una variable Id.
+Luego creamos un objeto "publication" con los valores requeridos.
+Despues de crear el objeto lo pusheamos al array "publications" y devolvemos la respuesta
+con el estado 200 y json.
+
+Ejercicio N° 2:
+
+La ruta es de tipo get, recibe el path (solo /post, porque puede llegar o no las query porque son opcionales).
+Destructurar author y title del query.
+Verificar en primer lugar si llegan author y title por query.
+Si llegan ambas hacemos un filter porque debemos devolver todas las publicaciones que coincidan con el autor y el titulo pasados.
+En una nueva variable guardamos el filtrado que hacemos sobre publications. En el filter buscamos todo lo que coincida con author y title
+con los pasados por query.
+Despues enviamos la respuesta con estado 200 y en el json ponemos la variable con el filtrado.
+Caso contratio, retornamos la respuesta con el error.
+Tener en cuenta que de esta forma si mandamos un author que no este guardado nos va a devolver
+un array vacio porque sí esta recibiendo author y title pero no los encuentra en publications.
+Para evitar esto podemos decir que si la variable creada tiene algo devolverlo, caso contrario devolver un error.
+Nota: para que pase el test el error debe ser el mismo en los dos casos.
+
+Ejercicio N° 3:
+
+Ruta de tipo get, path /posts/:author.
+Desestructuro author del params recibido.
+Igual que antes verificamos si hay un author por params.
+En caso de que llegue guardamos en una variable el filtrado que coincida con el author pasado por params.
+Respondemos con un status 200 y en el json la variable nueva.
+En caso de que no se encuentre nada en el filtrado devolvemos el error.
+Nota: de esta forma esta bien, pero para que pase el test es importante poner la variable antes del primer condicional.
+La condicion sería que si hay elementos en el array filtrado ahí devolvemos el array.
+La forma correcta de hacerlo es igual al punto 2 pero con author y params.
+
+Verificar si hay author ===> Verificar si el author existe en la base de datos ==> Si existe devolver los posts  	==> En caso de que no haya author devolver error.
+																				==> si no existe devolver un error.
+			
+Ejercicio N° 4:
+
+Ruta de tipo put, path posts/:id.
+Al ser un método put estamos buscando actualizar algún dato.
+Destructuramos el id de params.
+Destructuramos title y contents del body.
+Verificamos si existen los tres parametros.
+En el caso de que no se encuentren devolvemos un erro de status 400 con el json del error.
+Guardamos en una constante la busqueda del id. Usar el método find de los array. Usar el método Numbre() o parseInt() para convertir el id en número.
+Si la búsqueda no trae nada devolvemos una respuesta con el error status(400).json(objeto)
+Caso contrario actualizamos el objeto encontrado del la siguiente forma:
+		
+		:(
+			publicationId = {...publicationsId, title, contents}
+			res.status(400).json(publicationsId)
+		)
+		

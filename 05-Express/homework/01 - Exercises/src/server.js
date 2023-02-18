@@ -26,24 +26,69 @@ server.post("/posts", (req, res) => {
 });
 
 server.get("/posts", (req, res) => {
-  const {author, title} = req.query;
-  if(author && title){
-    const result = publications.filter(pub => pub.author == author && pub.title == title)
-    res.status(200).json(result);
-  }else {
-    res.status(400).json({"error": "No existe ninguna publicación con dicho título y autor indicado"});
+  const { author, title } = req.query;
+  if (author && title) {
+    const publicationsFiltered = publications.filter(
+      (p) => p.author === author && p.title === title
+    );
+    publicationsFiltered.length
+      ? res.status(200).json(publicationsFiltered)
+      : res.status(400).json({
+          error:
+            "No existe ninguna publicación con dicho título y autor indicado",
+        });
+  } else {
+    return res.status(400).json({
+      error: "No existe ninguna publicación con dicho título y autor indicado",
+    });
   }
 });
 
-server.get('/posts/:author', (req, res) =>{
- const {author} = req.params;
- if(author){
-  const searchPublications = publications.filter(p => p.author == author)
-  res.status(200).json(searchPublications);
- }else{
-  res.status(404).json({"error": "No existe ninguna publicación del autor indicado"})
- }
-})
+server.get("/posts/:author", (req, res) => {
+  const { author } = req.params;
+  if (author) {
+    const authorFiltered = publications.filter((p) => p.author === author);
+    authorFiltered.length
+      ? res.status(200).json(authorFiltered)
+      : res
+          .status(400)
+          .json({ error: "El author indicado no existe en la base de datos" });
+  } else {
+    return res
+      .status(400)
+      .json({ error: "No existe ninguna publicación del autor indicado" });
+  }
+});
+
+server.put("/posts/:id", (req, res) => {
+  const { id } = req.params;
+  const { title, contents } = req.body;
+  if (id && title && contents) {
+    searchId = publications.find((p) => p.id === Number(id));
+    if (searchId) {
+      searchId = {
+        ...searchId,
+        title,
+        contents,
+      };
+      res.status(200).json(searchId);
+    } else {
+      return res
+        .status(400)
+        .json({
+          error:
+            "No se recibió el id correcto necesario para modificar la publicación",
+        });
+    }
+  } else {
+    return res
+      .status(400)
+      .json({
+        error:
+          "No se recibieron los parámetros necesarios para modificar la publicación",
+      });
+  }
+});
 
 //NO MODIFICAR EL CODIGO DE ABAJO. SE USA PARA EXPORTAR EL SERVIDOR Y CORRER LOS TESTS
 module.exports = { publications, server };
