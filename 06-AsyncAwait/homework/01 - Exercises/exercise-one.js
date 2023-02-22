@@ -41,6 +41,8 @@ async function problemA() {
 
   // asyncawait version
   // Tu código acá:
+
+  //creo la funcion. Await, llamo a exerciseUtils.promisfiedReadFile y como parametro le paso stanza-01, si sale todo bien ejecuto blue con stanza-01 como parametro
 }
 
 async function problemB() {
@@ -56,6 +58,8 @@ async function problemB() {
 
   // asyncawait version
   // Tu código acá:
+
+  //lo mismo que el ejecricio 01 pero dos veces con las estanzas respectivas.
 }
 
 async function problemC() {
@@ -72,6 +76,8 @@ async function problemC() {
 
   // asyncawait version
   // Tu código acá:
+
+  // lo mismo que el anterior
 }
 
 async function problemD() {
@@ -87,6 +93,11 @@ async function problemD() {
 
   // asyncawait version
   // Tu código acá:
+
+  //usamo try catch. Dentro del try tenemos la funcion await, pasamos como argumento el poem-one.
+  //si sale todo bien ejecutamos blue, con stanza -04
+  //si hay algún error en el catch ejecutamos magenta
+  //tener en cuanta que la sintaxys del try-catch es paraceida a un if else solo que el try no recibe parametros
 }
 
 async function problemE() {
@@ -107,6 +118,9 @@ async function problemE() {
 
   // asyncawait version
   // Tu código acá:
+
+  //Usamos try Catch. En catch pasamos magenta con el error. Dentro del try hacemos dos constantes donde espperamos la respuesta de la llamadas a los archivos
+  //despues ejecutamos blue con estanza 3 y 4 respectivamente.
 }
 
 async function problemF() {
@@ -132,4 +146,8 @@ async function problemF() {
 
   // asyncawait version
   // Tu código acá:
+
+  //este ejercicio es igual que el anterior.
+  //el método finally, es algo que se ejecutra despues de que se haga el try o se haga el catch. Se ejecuta si o si.
+  //dentro del finally se pouede poner el console.log(done)
 }

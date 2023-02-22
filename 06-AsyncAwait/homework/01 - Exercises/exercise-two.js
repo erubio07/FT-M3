@@ -21,15 +21,19 @@ args.forEach(function (arg) {
 
 async function problemA() {
   // callback version
-  exerciseUtils.readFile("poem-one/stanza-01.txt", function (err, stanza) {
+  exerciseUtils.readFile("poem-two/stanza-01.txt", function (err, stanza) {
     exerciseUtils.blue(stanza);
   });
-  exerciseUtils.readFile("poem-one/stanza-02.txt", function (err, stanza) {
+  exerciseUtils.readFile("poem-two/stanza-02.txt", function (err, stanza) {
     exerciseUtils.blue(stanza);
   });
 
   // async await version
   // Tu código acá:
+
+  //Igual que el problema b del ejercicio one
+  //para hacerlo con Promise.all lo que tengo que hacer es una constante de await donde ponemos el Promise.all. Como parametro ponemos las promesas en forma del array.
+  //despues ejecutamos un forEach sobre la constante y por cada stanza ejecutamos a blue(stanza)
 }
 
 async function problemB() {
@@ -46,6 +50,10 @@ async function problemB() {
 
   // async await version
   // Tu código acá:
+
+  //crear constante promises y mapeamos filenames. Por cada file ejecutamnos exercise.promisifiedReadFile(file)
+  //Constante await con Promise.all(promises)
+  //Hacemos un forEach y por cada stanza dejecutamos blue(stanza)
 }
 
 async function problemC() {
@@ -62,6 +70,8 @@ async function problemC() {
 
   // async await version
   // Tu código acá:
+
+  //igual que el anterior, tratar de no copiar el código paraque me valla quedando en memoria
 }
 
 async function problemD() {
@@ -81,4 +91,9 @@ async function problemD() {
 
   // async await version
   // Tu código acá:
+
+  // Usamos bloque try catch
+  //dentro del try usamos el mismo código de los dos anteriores
+  //dentro del catch ejecutamos magenta con el error por parametro.
+  //opcional un finally
 }
