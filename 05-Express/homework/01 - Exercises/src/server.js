@@ -90,5 +90,32 @@ server.put("/posts/:id", (req, res) => {
   }
 });
 
+server.delete('/posts/:id', (req, res) => {
+  // const {id} = req.params;
+  // if(id){
+  //   postFiltered = publications.filter(p => p.id !== id)
+  //   if(postFiltered.length === publications.length){
+  //     res.status(400).json({"error": "No se recibió el id correcto necesario para eliminar la publicación"})
+  //   }else {
+  //     publications = postFiltered;
+  //     res.status(200).json({ success: true })
+  //   }
+  // }else {
+  //   res.status(400).json({"error": "No se recibió el id correcto necesario para eliminar la publicación"})
+  // }
+  const {id} = req.params
+    if(id){
+        const postsFiltered = publications.filter(post => post.id !== id)
+        if(postsFiltered.length === publications.length){
+            res.status(400).json( {error: "No se recibió el id correcto necesario para eliminar la publicación"})
+        }else{
+            publications = postsFiltered
+            res.status(200).json({ success: true })
+        }
+    }else{
+        res.status(400).json({error: "No se recibió el id de la publicación a eliminar"})
+    }
+})
+
 //NO MODIFICAR EL CODIGO DE ABAJO. SE USA PARA EXPORTAR EL SERVIDOR Y CORRER LOS TESTS
 module.exports = { publications, server };
